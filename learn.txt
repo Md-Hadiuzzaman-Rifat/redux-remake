@@ -1,0 +1,27 @@
+// store.js
+import {createStore} from "redux"
+const store= createStore(reducer component)
+export store 
+
+
+// app.js
+import { Provider } from "react-redux";
+<Provider store={store}>
+       ............
+<Provider>
+
+
+// counter.js
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "../redux/counter/actions";
+
+  const count = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+
+  const incrementHandler = (value) => {
+    dispatch(increment(value));
+  };
+
+  const decrementHandler = (value) => {
+    dispatch(decrement(value));
+  };
