@@ -1,27 +1,8 @@
-const { createStore, applyMiddleware } = require("redux");
-const {fetchMiddleware} =require('./middleWare')
-const {fetchTodos} =require('./function')
+const {counterActions} =require('./app/counterSlice')
+const store = require("./app/store")
 
-const initialState = {
-  todo: [], 
-};
+const {increment,decrement}=counterActions 
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "todo/loaded":
-      return {
-        ...state,
-        todo: [...state.todo, ...action.payload],
-      };
-      default:
-        return state
-  }
-};
-
-const store=createStore(reducer, applyMiddleware(fetchMiddleware))
-
-store.subscribe(()=>{
-    console.log(store.getState());
-})
-
-store.dispatch(fetchTodos)
+store.dispatch(increment())
+store.dispatch(decrement())
+store.dispatch(decrement())
