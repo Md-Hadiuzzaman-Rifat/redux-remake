@@ -1,8 +1,14 @@
-const {counterActions} =require('./app/counterSlice')
-const store = require("./app/store")
+const store = require('./app/store')
+const {counterAction} =require('./counter')
+const {dynamicCounterAction} =require('./dynamicCounter')
 
-const {increment,decrement}=counterActions 
 
-store.dispatch(increment())
-store.dispatch(decrement())
-store.dispatch(decrement())
+store.subscribe(()=>{
+    console.log(store.getState());
+})
+
+store.dispatch(counterAction.increment())
+// store.dispatch(counterAction.decrement())
+
+// store.dispatch(dynamicCounterAction.dynamicIncrement())
+// store.dispatch(dynamicCounterAction.dynamicIncrement())
